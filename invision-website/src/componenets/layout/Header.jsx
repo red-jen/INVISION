@@ -1,153 +1,181 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const navigationItems = [
-    { id: 'home', label: 'Accueil' },
-    { id: 'about', label: 'À Propos' },
-    { id: 'products', label: 'Produits' },
-    { id: 'brands', label: 'Marques' },
-    { id: 'quality', label: 'Qualité' },
-    { id: 'contact', label: 'Contact' }
-  ];
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
-      // Track scroll position for navbar styling
-      setIsScrolled(window.scrollY > 50);
-
-      // Track active section
+      setIsScrolled(window.scrollY > 20);
+      
+      // Update active section based on scroll position
       const sections = ['home', 'about', 'products', 'brands', 'quality', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
+      const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
-          const offsetTop = element.offsetTop;
-          const height = element.offsetHeight;
-          
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
-            setActiveSection(section);
-            break;
-          }
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
         }
-      }
+        return false;
+      });
+      if (current) setActiveSection(current);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
+  const navItems = [
+    { name: 'Home', href: '#home', id: 'home' },
+    { name: 'About', href: '#about', id: 'about' },
+    { name: 'Products', href: '#products', id: 'products' },
+    { name: 'Brands', href: '#brands', id: 'brands' },
+    { name: 'Quality', href: '#quality', id: 'quality' },
+    { name: 'Contact', href: '#contact', id: 'contact' }
+  ];
+
+  const handleNavClick = (href) => {
+    setIsMobileMenuOpen(false);
+    // Smooth scroll to section
+    const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
     }
   };
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-black/90 backdrop-blur-lg border-b border-blue-500/30' 
-        : 'bg-black/80 backdrop-blur-sm border-b border-blue-500/20'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          
-          {/* Logo */}
-          <div className="flex items-center">
-            <div className="relative group cursor-pointer" onClick={() => scrollToSection('home')}>
-              <div className="text-2xl font-bold tracking-tight">
-                <span className="bg-gradient-to-r from-gray-400 to-gray-600 bg-clip-text text-transparent font-mono">
-                  IV
-                </span>
-                <span className="text-blue-400 ml-1 font-light transition-colors group-hover:text-blue-300">
-                  Invision
-                </span>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+        isScrolled 
+          ? 'bg-gray-900/95 backdrop-blur-xl shadow-2xl border-b border-gray-700/50' 
+          : 'bg-transparent'
+      }`}
+    >
+      <nav className="relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            
+            {/* Logo Section */}
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-3 group cursor-pointer" onClick={() => handleNavClick('#home')}>
+                {/* Animated Logo */}
+                <div className="relative">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-600 to-blue-700 rounded-xl flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 shadow-lg">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  {/* Status Indicator */}
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full flex items-center justify-center animate-pulse">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                  </div>
+                </div>
+                
+                {/* Brand Text */}
+                <div className="hidden sm:block">
+                  <h1 className="text-xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
+                    INVISION
+                  </h1>
+                  <p className="text-xs text-gray-400 font-medium tracking-wider -mt-1">
+                    ELECTRONICS
+                  </p>
+                </div>
               </div>
-              {/* Animated underline */}
-              <div className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-blue-500 to-blue-400 transition-all duration-300 group-hover:w-full"></div>
             </div>
-          </div>
-          
-          {/* Desktop Navigation */}
-          <nav className="hidden md:block">
-            <div className="flex items-center space-x-1">
-              {navigationItems.map((item) => (
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-1">
+              {navItems.map((item) => (
                 <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 relative overflow-hidden group ${
+                  key={item.name}
+                  onClick={() => handleNavClick(item.href)}
+                  className={`relative px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 group ${
                     activeSection === item.id
-                      ? 'text-blue-400 bg-blue-500/10'
-                      : 'text-gray-300 hover:text-blue-400 hover:bg-white/5'
+                      ? 'text-white bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30'
+                      : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
                   }`}
                 >
-                  <span className="relative z-10">{item.label}</span>
+                  <span className="relative z-10">{item.name}</span>
                   
-                  {/* Active indicator */}
+                  {/* Hover Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  {/* Active Indicator */}
                   {activeSection === item.id && (
-                    <div className="absolute bottom-0 left-0 w-full h-px bg-blue-400"></div>
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-4 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
                   )}
-                  
-                  {/* Hover effect */}
-                  <div className="absolute inset-0 bg-blue-500/5 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-lg"></div>
                 </button>
               ))}
             </div>
-          </nav>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-lg text-gray-300 hover:text-blue-400 hover:bg-white/5 transition-all duration-300 relative group"
-            >
-              <div className="relative">
-                {isMenuOpen ? (
-                  <X className="h-6 w-6 transform transition-transform duration-200" />
-                ) : (
-                  <Menu className="h-6 w-6 transform transition-transform duration-200" />
-                )}
-              </div>
+            {/* Right Section */}
+            <div className="flex items-center space-x-3">
               
-              {/* Subtle glow effect on hover */}
-              <div className="absolute inset-0 bg-blue-500/10 scale-0 group-hover:scale-100 transition-transform duration-300 rounded-lg"></div>
-            </button>
+              {/* Search Button */}
+              <button className="hidden md:flex items-center justify-center w-9 h-9 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-300 group">
+                <svg className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+
+              {/* CTA Button */}
+              <button className="hidden md:flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 text-sm">
+                <span>Get Quote</span>
+              </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden flex items-center justify-center w-9 h-9 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all duration-300"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {isMobileMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Mobile menu */}
-      <div className={`md:hidden transition-all duration-300 ease-in-out border-t border-blue-500/20 ${
-        isMenuOpen 
-          ? 'max-h-80 opacity-100' 
-          : 'max-h-0 opacity-0 overflow-hidden'
-      }`}>
-        <div className="px-4 py-4 space-y-2 bg-black/95 backdrop-blur-lg">
-          {navigationItems.map((item, index) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-300 transform ${
-                activeSection === item.id
-                  ? 'text-blue-400 bg-blue-500/10 translate-x-2'
-                  : 'text-gray-300 hover:text-blue-400 hover:bg-white/5 hover:translate-x-2'
-              }`}
-              style={{ 
-                transitionDelay: `${index * 50}ms` 
-              }}
-            >
-              {item.label}
-            </button>
-          ))}
+        {/* Mobile Menu */}
+        <div className={`lg:hidden absolute top-full left-0 right-0 transition-all duration-500 ease-out ${
+          isMobileMenuOpen 
+            ? 'max-h-screen opacity-100 visible' 
+            : 'max-h-0 opacity-0 invisible overflow-hidden'
+        }`}>
+          <div className="bg-gray-900/98 backdrop-blur-xl border-t border-gray-700/50 shadow-2xl">
+            <div className="px-4 py-4 space-y-1">
+              {navItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => handleNavClick(item.href)}
+                  className={`w-full text-left px-4 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                    activeSection === item.id
+                      ? 'text-white bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30'
+                      : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ))}
+              
+              {/* Mobile Actions */}
+              <div className="pt-3 mt-3 border-t border-gray-700/50 space-y-2">
+                <button className="w-full px-4 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-all duration-300 font-semibold">
+                  Search Products
+                </button>
+                <button className="w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 font-bold">
+                  Get Free Quote
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
   );
 };

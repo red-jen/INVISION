@@ -13,6 +13,12 @@
   }
 }
 
+.electro-font {
+  font-family: 'Orbitron', 'Exo 2', monospace, sans-serif;
+  letter-spacing: 0.05em;
+}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

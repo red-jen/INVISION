@@ -1,201 +1,193 @@
-import React, { useEffect, useState } from 'react';
-import { ArrowRight, Play, ChevronDown, Monitor, Zap, BookOpen } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 
 const Hero = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Background images - you can replace these with your actual electronics images
+  const backgroundImages = [
+    'https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
+    'https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
+    'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
+    'https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
+    'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'
+  ];
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      });
-    };
+    setIsLoaded(true);
+    
+    // Change background image every 5 seconds
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        (prevIndex + 1) % backgroundImages.length
+      );
+    }, 5000);
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    return () => clearInterval(interval);
+  }, [backgroundImages.length]);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const goToSlide = (index) => {
+    setCurrentImageIndex(index);
   };
 
   return (
-    <div></div>
-    // <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-    //   {/* Dynamic Background */}
-    //   <div className="absolute inset-0">
-    //     {/* Gradient base */}
-    //     <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black to-purple-900/20"></div>
+    <section 
+      id="home" 
+      className="relative flex items-center justify-center overflow-hidden"
+      style={{ height: 'calc(110vh - 64px)' }}
+    >
+      
+      {/* Background Images with Transition Effect */}
+      <div className="absolute inset-0">
+        {backgroundImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+              index === currentImageIndex 
+                ? 'opacity-100 scale-100' 
+                : 'opacity-0 scale-110'
+            }`}
+            style={{
+              backgroundImage: `url(${image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+        ))}
         
-    //     {/* Interactive mouse-following gradient */}
-    //     <div 
-    //       className="absolute inset-0 opacity-30 transition-all duration-1000 ease-out"
-    //       style={{
-    //         background: `radial-gradient(600px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(59, 130, 246, 0.15), transparent 40%)`
-    //       }}
-    //     ></div>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/60"></div>
         
-    //     {/* Animated tech elements */}
-    //     <div className="absolute inset-0 opacity-40">
-    //       {/* Circuit dots */}
-    //       <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-    //       <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-blue-300 rounded-full animate-pulse delay-1000"></div>
-    //       <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse delay-500"></div>
-    //       <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-blue-400 rounded-full animate-pulse delay-1500"></div>
-    //       <div className="absolute bottom-1/3 right-1/2 w-2 h-2 bg-blue-600 rounded-full animate-pulse delay-2000"></div>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-purple-600/30"></div>
+        
+        {/* Animated Particles */}
+        <div className="absolute inset-0">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full opacity-60"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animation: `float ${3 + Math.random() * 4}s ease-in-out infinite`,
+                animationDelay: `${Math.random() * 2}s`
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className={`relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto transition-all duration-1000 ${
+        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}>
+        
+        {/* Tech Badge */}
+        <div className="inline-flex items-center px-3 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md mb-4 hover:bg-white/20 transition-all duration-300">
+          <div className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+          <span className="text-white text-xs font-Electro Holic tracking-wider">NEXT-GEN ELECTRONICS</span>
+        </div>
+
+        {/* Main Title */}
+        <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl electro-font mb-4 leading-tight transition-all duration-1200 delay-200 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <span className="block text-white drop-shadow-lg">INVISION</span>
+          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300 drop-shadow-lg">
+            ELECTRONICS
+          </span>
+          <span className="block text-white font-light text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-1">
+            REIMAGINED
+          </span>
+        </h1>
+
+        {/* Subtitle */}
+        <p className={`text-base sm:text-lg md:text-xl text-white/90 mb-6 max-w-2xl mx-auto leading-relaxed drop-shadow-md transition-all duration-1200 delay-400 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          Cutting-edge technology meets innovative design.
+          <span className="block mt-1 text-blue-300">
+            Experience the future of electronics today.
+          </span>
+        </p>
+
+        {/* CTA Buttons */}
+        <div className={`flex flex-col sm:flex-row gap-3 justify-center items-center mb-8 transition-all duration-1200 delay-600 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <button className="group relative px-6 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-full overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <span className="relative flex items-center text-sm">
+              <svg className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              EXPLORE PRODUCTS
+            </span>
+          </button>
           
-    //       {/* Circuit lines */}
-    //       <div className="absolute top-1/4 left-1/4 w-32 h-px bg-gradient-to-r from-blue-400/50 to-transparent"></div>
-    //       <div className="absolute top-1/3 right-1/3 w-24 h-px bg-gradient-to-l from-blue-300/50 to-transparent rotate-45"></div>
-    //       <div className="absolute bottom-1/4 left-1/3 w-28 h-px bg-gradient-to-r from-blue-500/50 to-transparent -rotate-12"></div>
-    //       <div className="absolute top-1/2 right-1/4 w-20 h-px bg-gradient-to-l from-blue-400/50 to-transparent rotate-90"></div>
-          
-    //       {/* Floating particles */}
-    //       <div className="absolute top-1/5 left-1/5 w-4 h-4 bg-blue-500/20 rounded-full animate-float"></div>
-    //       <div className="absolute top-2/3 right-1/5 w-3 h-3 bg-blue-400/20 rounded-full animate-float delay-1000"></div>
-    //       <div className="absolute bottom-1/5 left-2/3 w-5 h-5 bg-blue-600/20 rounded-full animate-float delay-2000"></div>
-    //     </div>
-    //   </div>
+          <button className="group px-6 py-2.5 border-2 border-white/40 text-white font-bold rounded-full hover:border-white hover:bg-white/10 transform hover:scale-105 transition-all duration-300 backdrop-blur-sm">
+            <span className="flex items-center text-sm">
+              <svg className="w-4 h-4 mr-2 group-hover:rotate-45 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              WATCH DEMO
+            </span>
+          </button>
+        </div>
 
-    //   {/* Main Content */}
-    //   <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-    //     <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
-    //       {/* Left Content */}
-    //       <div className="space-y-8 text-center lg:text-left">
-    //         {/* Badge */}
-    //         <div className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-full backdrop-blur-sm">
-    //           <div className="flex items-center space-x-2">
-    //             <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-    //             <span className="text-blue-400 text-sm font-medium">Technologie • Innovation • Impact</span>
-    //           </div>
-    //         </div>
-            
-    //         {/* Main Headline */}
-    //         <div className="space-y-4">
-    //           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-    //             <span className="block text-white animate-fade-in-up">Là Où la</span>
-    //             <span className="block bg-gradient-to-r from-blue-400 via-blue-500 to-purple-500 bg-clip-text text-transparent animate-fade-in-up delay-200">
-    //               Technologie
-    //             </span>
-    //             <span className="block text-white animate-fade-in-up delay-400">Rencontre</span>
-    //             <span className="block text-blue-400 font-light animate-fade-in-up delay-600">l'Impact Visuel</span>
-    //           </h1>
-    //         </div>
-            
-    //         {/* Description */}
-    //         <p className="text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-2xl animate-fade-in-up delay-800">
-    //           Invision Solutions révolutionne les environnements d'apprentissage et de travail 
-    //           avec des <span className="text-blue-400 font-semibold">solutions interactives de pointe</span>, 
-    //           alliant performance et innovation.
-    //         </p>
+        {/* Stats */}
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto transition-all duration-1200 delay-800 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          {[
+            { number: '50+', label: 'Premium Brands' },
+            { number: '24/7', label: 'Tech Support' },
+            { number: '10K+', label: 'Happy Clients' },
+            { number: '99%', label: 'Satisfaction' }
+          ].map((stat, index) => (
+            <div key={index} className="text-center p-3 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300">
+              <div className="text-lg font-bold text-white mb-1">{stat.number}</div>
+              <div className="text-white/70 text-xs">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
 
-    //         {/* Key Features */}
-    //         <div className="flex flex-wrap justify-center lg:justify-start gap-6 animate-fade-in-up delay-1000">
-    //           {[
-    //             { icon: <Monitor className="h-5 w-5" />, text: "Écrans Interactifs" },
-    //             { icon: <Zap className="h-5 w-5" />, text: "Intégration TIC" },
-    //             { icon: <BookOpen className="h-5 w-5" />, text: "Solutions Pédagogiques" }
-    //           ].map((feature, index) => (
-    //             <div key={index} className="flex items-center space-x-2 px-3 py-2 bg-white/5 rounded-lg border border-blue-500/20">
-    //               <div className="text-blue-400">
-    //                 {feature.icon}
-    //               </div>
-    //               <span className="text-gray-300 text-sm font-medium">{feature.text}</span>
-    //             </div>
-    //           ))}
-    //         </div>
+      {/* Image Navigation Dots */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+        {backgroundImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentImageIndex 
+                ? 'bg-white scale-125' 
+                : 'bg-white/50 hover:bg-white/75'
+            }`}
+          />
+        ))}
+      </div>
 
-    //         {/* CTA Buttons */}
-    //         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up delay-1200">
-    //           <button 
-    //             onClick={() => scrollToSection('products')}
-    //             className="group px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25 text-white relative overflow-hidden"
-    //           >
-    //             <div className="relative z-10 flex items-center justify-center space-x-2">
-    //               <span>Découvrir nos produits</span>
-    //               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-    //             </div>
-    //             <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-    //           </button>
-              
-    //           <button className="group px-8 py-4 border border-blue-500/50 hover:border-blue-400 text-blue-400 hover:text-blue-300 rounded-xl font-semibold transition-all duration-300 hover:bg-blue-500/10 relative overflow-hidden">
-    //             <div className="relative z-10 flex items-center justify-center space-x-2">
-    //               <Play className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-    //               <span>Voir la démo</span>
-    //             </div>
-    //             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-    //           </button>
-    //         </div>
-    //       </div>
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-4 right-4 text-white/60 animate-bounce">
+        <div className="flex flex-col items-center">
+          <div className="w-4 h-6 border border-white/40 rounded-full flex justify-center">
+            <div className="w-0.5 h-1.5 bg-white/60 rounded-full mt-1 animate-pulse"></div>
+          </div>
+          <span className="text-xs mt-1">SCROLL</span>
+        </div>
+      </div>
 
-    //       {/* Right Content - Hero Image/Visual */}
-    //       <div className="relative animate-fade-in-up delay-600">
-    //         <div className="relative">
-    //           {/* Main visual container */}
-    //           <div className="relative bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-3xl p-8 border border-blue-500/20 shadow-2xl backdrop-blur-sm">
-    //             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-3xl"></div>
-                
-    //             {/* Hero Image Placeholder */}
-    //             <div className="relative">
-    //               <div className="bg-black/60 rounded-2xl p-8 mb-6 border border-blue-500/30 backdrop-blur-sm">
-    //                 <div className="text-center text-gray-400">
-    //                   <div className="w-24 h-24 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl mx-auto mb-6 flex items-center justify-center border border-blue-500/30">
-    //                     <Monitor className="h-12 w-12 text-blue-400" />
-    //                   </div>
-    //                   <p className="text-lg font-semibold text-blue-400 mb-2">Espace pour Image Hero Principal</p>
-    //                   <p className="text-sm text-gray-500">Écran interactif, environnement technologique</p>
-    //                   <p className="text-xs text-gray-600 mt-2">Recommandé: 800x600px, format moderne</p>
-    //                 </div>
-    //               </div>
-                  
-    //               {/* Feature highlights */}
-    //               <div className="grid grid-cols-3 gap-3">
-    //                 {[
-    //                   { icon: <Monitor className="h-4 w-4" />, label: "4K Display" },
-    //                   { icon: <Zap className="h-4 w-4" />, label: "Smart Tech" },
-    //                   { icon: <BookOpen className="h-4 w-4" />, label: "Education" }
-    //                 ].map((item, index) => (
-    //                   <div key={index} className="bg-black/40 rounded-lg p-3 border border-blue-500/20 text-center hover:bg-black/60 transition-colors duration-300">
-    //                     <div className="w-8 h-8 bg-blue-500/20 rounded-lg mx-auto mb-2 flex items-center justify-center">
-    //                       <div className="text-blue-400">
-    //                         {item.icon}
-    //                       </div>
-    //                     </div>
-    //                     <div className="text-xs text-gray-400 font-medium">{item.label}</div>
-    //                   </div>
-    //                 ))}
-    //               </div>
-    //             </div>
-    //           </div>
-              
-    //           {/* Floating elements */}
-    //           <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl border border-blue-500/30 flex items-center justify-center backdrop-blur-sm animate-float">
-    //             <Zap className="h-8 w-8 text-blue-400" />
-    //           </div>
-              
-    //           <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-xl border border-purple-500/30 flex items-center justify-center backdrop-blur-sm animate-float delay-1000">
-    //             <BookOpen className="h-6 w-6 text-purple-400" />
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-
-    //   {/* Scroll Indicator */}
-    //   <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-    //     <button 
-    //       onClick={() => scrollToSection('about')}
-    //       className="p-2 rounded-full bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 transition-colors duration-300 group"
-    //     >
-    //       <ChevronDown className="h-6 w-6 text-blue-400 group-hover:text-blue-300" />
-    //     </button>
-    //   </div>
-    // </section>
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(180deg); }
+        }
+      `}</style>
+    </section>
   );
 };
 
