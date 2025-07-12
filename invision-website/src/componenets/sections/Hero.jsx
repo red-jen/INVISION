@@ -59,20 +59,21 @@ const Hero = () => {
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/60"></div>
         
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-purple-600/30"></div>
+        {/* Blue Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/30 via-cyan-600/20 to-blue-800/30"></div>
         
         {/* Animated Particles */}
         <div className="absolute inset-0">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full opacity-60"
+              className="absolute w-1 h-1 bg-blue-300 rounded-full opacity-60"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 animation: `float ${3 + Math.random() * 4}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 2}s`
+                animationDelay: `${Math.random() * 2}s`,
+                boxShadow: '0 0 6px rgba(59, 130, 246, 0.8)'
               }}
             />
           ))}
@@ -80,111 +81,145 @@ const Hero = () => {
       </div>
 
       {/* Main Content */}
-      <div className={`relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto transition-all duration-1000 ${
+      <div className={`relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full transition-all duration-1000 ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
         
         {/* Tech Badge */}
-        <div className="inline-flex items-center px-3 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md mb-4 hover:bg-white/20 transition-all duration-300">
-          <div className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-          <span className="text-white text-xs font-Electro Holic tracking-wider">NEXT-GEN ELECTRONICS</span>
-        </div>
+        {/* <div className="inline-flex items-center px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md mb-6 sm:mb-8 hover:bg-white/20 transition-all duration-300">
+          <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse"></div>
+          <span className="text-white text-xs sm:text-sm font-medium tracking-wider">PROFESSIONAL DISPLAY SOLUTIONS</span>
+        </div> */}
 
-        {/* Main Title */}
-        <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl electro-font mb-4 leading-tight transition-all duration-1200 delay-200 ${
+        {/* Cool Title with Mobile Adjustments */}
+        <h1 className={`mb-6 sm:mb-8 leading-none transition-all duration-1200 delay-200 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <span className="block text-white drop-shadow-lg">INVISION</span>
-          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300 drop-shadow-lg">
-            ELECTRONICS
-          </span>
-          <span className="block text-white font-light text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-1">
-            REIMAGINED
+        }`}
+            style={{
+              fontSize: 'clamp(2.5rem, 12vw, 16rem)', // Smaller starting size for mobile
+              fontWeight: '900',
+              letterSpacing: '-0.05em',
+              fontFamily: '"Orbitron", "Exo 2", "Rajdhani", sans-serif',
+              marginTop: '1rem' // Add top margin for mobile
+            }}>
+          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-cyan-200 drop-shadow-2xl"
+                style={{ 
+                  WebkitTextStroke: '1px rgba(255,255,255,0.2)',
+                  textShadow: '0 0 80px rgba(59, 130, 246, 0.8), 0 0 120px rgba(6, 182, 212, 0.6)',
+                  filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.8))'
+                }}>
+            INVISION
           </span>
         </h1>
 
-        {/* Subtitle */}
-        <p className={`text-base sm:text-lg md:text-xl text-white/90 mb-6 max-w-2xl mx-auto leading-relaxed drop-shadow-md transition-all duration-1200 delay-400 ${
+        {/* Enhanced Subtitle */}
+        <p className={`text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed drop-shadow-md transition-all duration-1200 delay-400 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          Cutting-edge technology meets innovative design.
-          <span className="block mt-1 text-blue-300">
-            Experience the future of electronics today.
+        }`}
+           style={{ fontFamily: '"Inter", "Poppins", sans-serif' }}>
+          <span className="block mb-2 font-medium">
+            Professional Video Walls & Display Solutions
+          </span>
+          <span className="block text-blue-300 text-base sm:text-lg md:text-xl lg:text-2xl font-light">
+            Transforming spaces with cutting-edge technology
           </span>
         </p>
 
-        {/* CTA Buttons */}
-        <div className={`flex flex-col sm:flex-row gap-3 justify-center items-center mb-8 transition-all duration-1200 delay-600 ${
+        {/* Enhanced CTA Buttons */}
+        <div className={`flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 transition-all duration-1200 delay-600 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <button className="group relative px-6 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-full overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <span className="relative flex items-center text-sm">
-              <svg className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <button className="group relative px-8 sm:px-10 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-bold text-base sm:text-lg rounded-full overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50 w-full sm:w-auto">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <span className="relative flex items-center justify-center" style={{ fontFamily: '"Inter", sans-serif' }}>
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
               </svg>
-              EXPLORE PRODUCTS
+              VIEW CATALOG
             </span>
           </button>
           
-          <button className="group px-6 py-2.5 border-2 border-white/40 text-white font-bold rounded-full hover:border-white hover:bg-white/10 transform hover:scale-105 transition-all duration-300 backdrop-blur-sm">
-            <span className="flex items-center text-sm">
-              <svg className="w-4 h-4 mr-2 group-hover:rotate-45 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          <button className="group px-8 sm:px-10 py-3 sm:py-4 border-2 border-white/40 text-white font-bold text-base sm:text-lg rounded-full hover:border-blue-400 hover:bg-blue-500/10 transform hover:scale-105 transition-all duration-300 backdrop-blur-sm w-full sm:w-auto">
+            <span className="flex items-center justify-center" style={{ fontFamily: '"Inter", sans-serif' }}>
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
-              WATCH DEMO
+              GET QUOTE
             </span>
           </button>
         </div>
 
-        {/* Stats */}
-        <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto transition-all duration-1200 delay-800 ${
+        {/* Enhanced Stats with mobile responsive grid */}
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto transition-all duration-1200 delay-800 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           {[
-            { number: '50+', label: 'Premium Brands' },
-            { number: '24/7', label: 'Tech Support' },
-            { number: '10K+', label: 'Happy Clients' },
-            { number: '99%', label: 'Satisfaction' }
+            { number: '500+', label: 'Projects Completed' },
+            { number: '24/7', label: 'Technical Support' },
+            { number: '15+', label: 'Years Experience' },
+            { number: '99%', label: 'Client Satisfaction' }
           ].map((stat, index) => (
-            <div key={index} className="text-center p-3 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300">
-              <div className="text-lg font-bold text-white mb-1">{stat.number}</div>
-              <div className="text-white/70 text-xs">{stat.label}</div>
+            <div key={index} className="text-center p-4 sm:p-6 rounded-xl bg-white/10 backdrop-blur-md border border-blue-400/20 hover:bg-blue-500/20 hover:border-blue-400/40 transition-all duration-300 hover:scale-105">
+              <div className="text-xl sm:text-2xl md:text-3xl font-black text-white mb-1 sm:mb-2" style={{ fontFamily: '"Orbitron", sans-serif' }}>{stat.number}</div>
+              <div className="text-blue-200 text-xs sm:text-sm font-medium" style={{ fontFamily: '"Inter", sans-serif' }}>{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Image Navigation Dots */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
         {backgroundImages.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentImageIndex 
-                ? 'bg-white scale-125' 
-                : 'bg-white/50 hover:bg-white/75'
+                ? 'bg-blue-400 scale-125 shadow-lg shadow-blue-400/50' 
+                : 'bg-white/50 hover:bg-blue-300/75'
             }`}
           />
         ))}
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-4 right-4 text-white/60 animate-bounce">
+      <div className="absolute bottom-8 right-4 sm:right-8 text-white/60 animate-bounce">
         <div className="flex flex-col items-center">
-          <div className="w-4 h-6 border border-white/40 rounded-full flex justify-center">
-            <div className="w-0.5 h-1.5 bg-white/60 rounded-full mt-1 animate-pulse"></div>
+          <div className="w-4 h-6 sm:w-5 sm:h-8 border-2 border-blue-400/40 rounded-full flex justify-center">
+            <div className="w-1 h-1.5 sm:w-1 sm:h-2 bg-blue-400 rounded-full mt-1.5 sm:mt-2 animate-pulse"></div>
           </div>
-          <span className="text-xs mt-1">SCROLL</span>
+          <span className="text-xs sm:text-sm mt-2 font-medium text-blue-200" style={{ fontFamily: '"Inter", sans-serif' }}>SCROLL</span>
         </div>
       </div>
+
+      {/* Import Google Fonts */}
+      <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
       <style jsx>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Mobile-specific adjustments */
+        @media (max-width: 640px) {
+          h1 {
+            font-size: clamp(2.5rem, 12vw, 6rem) !important;
+            margin-top: 2rem !important;
+            margin-bottom: 1.5rem !important;
+          }
+          
+          /* Reduce spacing on mobile */
+          .tech-badge {
+            margin-bottom: 1rem !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          h1 {
+            font-size: clamp(2rem, 15vw, 4rem) !important;
+            margin-top: 1.5rem !important;
+          }
         }
       `}</style>
     </section>
