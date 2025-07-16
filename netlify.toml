@@ -4,6 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  CI = "false"
 
 # Redirect rules for SPA (Single Page Application)
 [[redirects]]
