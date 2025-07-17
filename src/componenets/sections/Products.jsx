@@ -1,11 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProductDetailsModal from './ProductDetailsModal';
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 const Products = () => {
   const [hoveredProduct, setHoveredProduct] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef(null);
+  const intervalRef = useRef(null);
+  const cardsRef = useRef([]);
+  const headerRef = useRef(null);
+  const ctaRef = useRef(null);
 
   // Complete professional display and tech products with detailed specifications
   const products = [
@@ -13,7 +26,7 @@ const Products = () => {
       id: 1,
       name: 'INVISION OPS Integrated Mini PC',
       modelCode: 'DS-2022',
-      image: 'https://www.isemc.com/images/2023/07/18/lcd-video-wall-and-panel.webp',
+      image: '/assests/ops.png',
       description: 'Professional integrated mini PC for tactile screen applications, delivered with Microsoft Office 2019 Standard with activation key and Windows license.',
       features: ['Touch Enabled', '4K Resolution', 'Multi-User Support'],
       layoutStyle: 'hero',
@@ -51,7 +64,7 @@ const Products = () => {
       id: 2,
       name: 'INVISION White Sliding Whiteboard',
       modelCode: 'IS-4SB',
-      image: 'https://gtoffice.co.uk/wp-content/uploads/2023/02/LCD-Video-Wall-White-Background-Image-2.jpg',
+      image: '/assests/whiteboard.jpg',
       description: 'Professional sliding whiteboard with 4 sliding doors, 02 sliding doors for projection protection',
       features: ['Sliding Doors', 'Projection Protection', 'Aluminum Frame'],
       layoutStyle: 'wide',
@@ -469,7 +482,156 @@ const Products = () => {
 
   useEffect(() => {
     setIsLoaded(true);
-  }, []);
+    
+    // Mouse tracking for dynamic effects
+    const handleMouseMove = (e) => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        setMousePosition({
+          x: ((e.clientX - rect.left) / rect.width) * 100,
+          y: ((e.clientY - rect.top) / rect.height) * 100
+        });
+      }
+    };
+
+    // Auto-slide functionality
+    const startAutoSlide = () => {
+      if (isAutoPlaying) {
+        intervalRef.current = setInterval(() => {
+          setCurrentSlide(prev => (prev + 1) % Math.ceil(products.length / 4));
+        }, 4000);
+      }
+    };
+
+    // GSAP Animations for smooth entrance
+    const initGSAPAnimations = () => {
+      // Set initial states with different directions for each card
+      gsap.set(headerRef.current, { opacity: 0, y: -50 });
+      gsap.set(ctaRef.current, { opacity: 0, y: 50 });
+
+      // Set different initial positions for cards based on their index
+      cardsRef.current.forEach((card, index) => {
+        if (card) {
+          let initialProps = { opacity: 0 };
+          
+          // Assign different slide directions based on card position
+          switch (index % 4) {
+            case 0: // Slide from left
+              initialProps.x = -200;
+              initialProps.y = 0;
+              break;
+            case 1: // Slide from right
+              initialProps.x = 200;
+              initialProps.y = 0;
+              break;
+            case 2: // Slide from bottom
+              initialProps.x = 0;
+              initialProps.y = 200;
+              break;
+            case 3: // Slide from top
+              initialProps.x = 0;
+              initialProps.y = -200;
+              break;
+          }
+          
+          gsap.set(card, initialProps);
+        }
+      });
+
+      // Create timeline for header animation
+      const headerTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      headerTl.to(headerRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power3.out"
+      });
+
+      // Animate product cards with sliding entrances
+      cardsRef.current.forEach((card, index) => {
+        if (card) {
+          gsap.to(card, {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            duration: 1.2,
+            delay: index * 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 90%",
+              end: "bottom 10%",
+              toggleActions: "play none none reverse"
+            }
+          });
+
+          // Add subtle hover animations
+          card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+              scale: 1.02,
+              y: -5,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          });
+
+          card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+              scale: 1,
+              y: 0,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          });
+        }
+      });
+
+      // Animate CTA section
+      gsap.to(ctaRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ctaRef.current,
+          start: "top 90%",
+          end: "bottom 10%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    };
+
+    startAutoSlide();
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    // Initialize GSAP animations after a small delay to ensure elements are rendered
+    setTimeout(initGSAPAnimations, 100);
+    
+    return () => {
+      clearInterval(intervalRef.current);
+      window.removeEventListener('mousemove', handleMouseMove);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, [isAutoPlaying, products.length]);
+
+  useEffect(() => {
+    if (isAutoPlaying) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = setInterval(() => {
+        setCurrentSlide(prev => (prev + 1) % Math.ceil(products.length / 4));
+      }, 4000);
+    } else {
+      clearInterval(intervalRef.current);
+    }
+  }, [isAutoPlaying]);
 
   const handleLearnMore = (product) => {
     setSelectedProduct(product);
@@ -479,6 +641,24 @@ const Products = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedProduct(null);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide(prev => (prev + 1) % Math.ceil(products.length / 4));
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 10000);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(prev => prev === 0 ? Math.ceil(products.length / 4) - 1 : prev - 1);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 10000);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const getCardStyle = (layoutStyle) => {
@@ -522,49 +702,68 @@ const Products = () => {
   return (
     <>
       <section 
+        ref={sectionRef}
         id="products" 
-        className="py-20 relative overflow-hidden"
+        className="py-20 relative overflow-hidden min-h-screen"
         style={{ 
-          background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f5f9 100%)'
+          background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)'
         }}
       >
-        {/* ... existing background elements and header ... */}
+        {/* Subtle Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Simple Grid Pattern */}
+          <div 
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '50px 50px'
+            }}
+          />
+        </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Header */}
-          <div className={`mb-16 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {/* Header with Phonk Style */}
+          <div ref={headerRef} className="mb-16">
             <div className="text-center">
-              <div className="inline-flex items-center px-6 py-3 rounded-full mb-8 backdrop-blur-md border"
+              <div className="inline-flex items-center px-8 py-4 rounded-full mb-8 backdrop-blur-sm border-2 relative overflow-hidden group"
                    style={{ 
-                     backgroundColor: 'rgba(63, 184, 246, 0.1)', 
-                     borderColor: 'rgba(63, 184, 246, 0.2)' 
+                     background: 'rgba(255, 255, 255, 0.1)',
+                     borderColor: 'rgba(255, 255, 255, 0.2)',
+                     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
                    }}>
-                <div className="w-2 h-2 rounded-full mr-3 animate-pulse" style={{ backgroundColor: '#3fb8f6' }}></div>
-                <span className="text-sm font-semibold tracking-wide" style={{ color: '#3fb8f6' }}>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-slate-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
+                <div className="w-3 h-3 rounded-full mr-4 relative">
+                  <div className="absolute inset-0 rounded-full bg-blue-500 animate-ping opacity-75"/>
+                  <div className="relative w-full h-full rounded-full bg-blue-600"/>
+                </div>
+                <span className="text-base font-bold tracking-wider text-white">
                   PROFESSIONAL DISPLAY SOLUTIONS
                 </span>
               </div>
 
-              <h2 className="text-5xl md:text-6xl font-bold mb-6"
+              <h2 className="text-6xl md:text-8xl font-black mb-8 relative"
                   style={{ 
-                    color: '#040404', 
                     fontFamily: '"Inter", sans-serif'
                   }}>
-                Our <span style={{ 
-                  background: 'linear-gradient(135deg, #3fb8f6 0%, #6c6ffb 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent'
-                }}>Products</span>
+                <span className="text-white">
+                  INVISION
+                </span>
+                <span className="text-blue-400 ml-4 relative">
+                  PRODUCTS
+                </span>
               </h2>
-              <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: '#6e6e6e' }}>
-                Cutting-edge display technology designed to transform your business environment
+              <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed text-slate-300 font-medium">
+                Experience professional display technology solutions for your business needs
               </p>
             </div>
           </div>
 
           {/* Product Grid */}
-          <div className={`transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div>
             <div 
               className="grid gap-6 auto-rows-[minmax(100px,auto)]"
               style={{
@@ -574,8 +773,8 @@ const Products = () => {
               {products.map((product, index) => (
                 <div
                   key={product.id}
-                  className={`group cursor-pointer transition-all duration-700 hover:scale-[1.02] hover:-translate-y-2 ${getCardStyle(product.layoutStyle)}`}
-                  style={{ animationDelay: `${index * 0.15}s` }}
+                  ref={el => cardsRef.current[index] = el}
+                  className={`group cursor-pointer ${getCardStyle(product.layoutStyle)}`}
                   onMouseEnter={() => setHoveredProduct(product.id)}
                   onMouseLeave={() => setHoveredProduct(null)}
                 >
@@ -618,28 +817,28 @@ const Products = () => {
                       </div>
                     </div>
 
-                    {/* Product Image */}
+                    /* Product Image */
                     <div className={`relative overflow-hidden ${getImageHeight(product.layoutStyle)}`}
-                         style={{ backgroundColor: '#f8f9fa' }}>
+                      style={{ backgroundColor: '#f8f9fa' }}>
                       <img 
                         src={product.image} 
                         alt={product.name}
                         className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
                         onError={(e) => {
-                          e.target.src = 'https://via.placeholder.com/600x400/f8f9fa/3fb8f6?text=Display+Solution';
+                       e.target.src = 'https://via.placeholder.com/600x400/f8f9fa/3fb8f6?text=Display+Solution';
                         }}
                       />
                       
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                           style={{ background: 'linear-gradient(to top, rgba(4, 4, 4, 0.3), transparent)' }}></div>
+                        style={{ background: 'linear-gradient(to top, rgba(4, 4, 4, 0.3), transparent)' }}></div>
                       
                       <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
                         <div className="w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md"
-                             style={{ backgroundColor: 'rgba(63, 184, 246, 0.2)', border: '1px solid rgba(255, 255, 255, 0.3)' }}>
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                          </svg>
+                          style={{ backgroundColor: 'rgba(63, 184, 246, 0.2)', border: '1px solid rgba(255, 255, 255, 0.3)' }}>
+                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                       </svg>
                         </div>
                       </div>
                     </div>
@@ -710,26 +909,45 @@ const Products = () => {
             </div>
           </div>
 
-          {/* Bottom CTA */}
-          {/* <div className="text-center mt-20">
-            <div className="inline-flex flex-col items-center p-8 rounded-2xl backdrop-blur-xl border"
+          {/* Bottom CTA with Phonk Style */}
+          <div ref={ctaRef} className="text-center mt-20">
+            <div className="inline-flex flex-col items-center p-8 rounded-3xl backdrop-blur-sm border-2 relative overflow-hidden group"
                  style={{ 
-                   background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 100%)',
-                   borderColor: 'rgba(63, 184, 246, 0.1)',
-                   boxShadow: '0 20px 60px rgba(0,0,0,0.05)'
+                   background: 'rgba(255, 255, 255, 0.05)',
+                   borderColor: 'rgba(255, 255, 255, 0.1)',
+                   boxShadow: '0 10px 40px rgba(0,0,0,0.2)'
                  }}>
-              <h3 className="text-3xl font-bold mb-4" style={{ color: '#040404' }}>
-                Need a Custom Solution?
+              
+              {/* Subtle Background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-slate-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
+              
+              <h3 className="text-4xl font-black mb-4 text-white relative z-10">
+                NEED CUSTOM SOLUTIONS?
               </h3>
-              <p className="mb-8 max-w-md text-lg" style={{ color: '#6e6e6e' }}>
+              <p className="mb-8 max-w-md text-lg text-slate-300 relative z-10">
                 Our specialists design tailored display solutions for your unique requirements.
               </p>
-              <button className="px-8 py-4 text-white font-bold rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-                      style={{ background: 'linear-gradient(135deg, #3fb8f6, #6c6ffb)' }}>
-                Start Your Project
+              <button className="px-10 py-4 text-white font-bold rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl border-2 relative z-10"
+                      style={{ 
+                        background: 'linear-gradient(135deg, #3b82f6, #1e40af)',
+                        borderColor: 'rgba(59, 130, 246, 0.5)',
+                        boxShadow: '0 4px 20px rgba(59, 130, 246, 0.2)'
+                      }}>
+                START YOUR PROJECT
               </button>
             </div>
-          </div> */}
+          </div>
+        </div>
+
+        {/* Professional Tech Elements */}
+        <div className="absolute top-20 left-10 opacity-20">
+          <div className="w-4 h-4 border border-white rotate-45 animate-pulse" style={{ animationDuration: '3s' }}/>
+        </div>
+        <div className="absolute top-40 right-20 opacity-20">
+          <div className="w-6 h-6 border border-blue-400 rotate-12 animate-pulse" style={{ animationDelay: '1s', animationDuration: '3s' }}/>
+        </div>
+        <div className="absolute bottom-40 left-20 opacity-20">
+          <div className="w-8 h-8 border border-slate-400 rotate-45 animate-pulse" style={{ animationDelay: '2s', animationDuration: '3s' }}/>
         </div>
       </section>
 
