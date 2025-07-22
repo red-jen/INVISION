@@ -345,22 +345,7 @@ const Contact = () => {
                     {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Entreprise
-                    </label>
-                    <input
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
-                      onFocus={() => setFocusedField('company')}
-                      onBlur={() => setFocusedField(null)}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="Nom de votre entreprise"
-                      style={{ color: '#1f2937' }}
-                    />
-                  </div>
+                 
                 </div>
 
                 {/* Subject */}
