@@ -26,7 +26,7 @@ const Products = () => {
       id: 1,
       name: 'INVISION OPS Integrated Mini PC',
       modelCode: 'DS-2022',
-      image: '/assests/opps.png',
+      image: '/assests/202312041614290194801.jpg-removebg-preview.png',
       description: 'Professional integrated mini PC for interactive displays, featuring Windows 10 Pro and Microsoft Office 2019 Standard with full activation keys.',
       features: ['Windows 10 Pro', 'Intel Core i7', '16GB RAM'],
       layoutStyle: 'hero',

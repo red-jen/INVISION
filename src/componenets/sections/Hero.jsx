@@ -7,10 +7,10 @@ const Hero = () => {
   // Background images - you can replace these with your actual electronics images
   const backgroundImages = [
     'https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-    'https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-    'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
+    '/assests/G5.png',
+    '/assests/G2.png',
     'https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-    'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'
+    '/assests/G8.png'
   ];
 
   useEffect(() => {
@@ -112,44 +112,57 @@ const Hero = () => {
           </span>
         </h1>
 
-        {/* Enhanced Subtitle */}
-        <p className={`text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed drop-shadow-md transition-all duration-1200 delay-400 ${
-          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
-           style={{ fontFamily: '"Inter", "Poppins", sans-serif' }}>
-          <span className="block mb-2 font-medium">
-            Professional Video Walls & Display Solutions
-          </span>
-          <span className="block text-blue-300 text-base sm:text-lg md:text-xl lg:text-2xl font-light">
-            Transforming spaces with cutting-edge technology
-          </span>
-        </p>
-
-        {/* Enhanced CTA Buttons */}
-        <div className={`flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 transition-all duration-1200 delay-600 ${
-          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <button className="group relative px-8 sm:px-10 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-bold text-base sm:text-lg rounded-full overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50 w-full sm:w-auto">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <span className="relative flex items-center justify-center" style={{ fontFamily: '"Inter", sans-serif' }}>
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-              </svg>
-              VIEW CATALOG
+ 
+          <p className={`text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 mb-8 sm:mb-12 max-w-4xl mx-auto leading-relaxed drop-shadow-md transition-all duration-1200 delay-400 ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+             style={{ fontFamily: '"Inter", "Poppins", sans-serif' }}>
+            <span className="block mb-2 font-medium">
+              Professional Video Walls & Display Solutions
             </span>
-          </button>
-          
-          <button className="group px-8 sm:px-10 py-3 sm:py-4 border-2 border-white/40 text-white font-bold text-base sm:text-lg rounded-full hover:border-blue-400 hover:bg-blue-500/10 transform hover:scale-105 transition-all duration-300 backdrop-blur-sm w-full sm:w-auto">
-            <span className="flex items-center justify-center" style={{ fontFamily: '"Inter", sans-serif' }}>
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
-              GET QUOTE
+            <span className="block text-blue-300 text-base sm:text-lg md:text-xl lg:text-2xl font-light">
+              Transforming spaces with cutting-edge technology
             </span>
-          </button>
-        </div>
+          </p>
 
-        {/* Enhanced Stats with mobile responsive grid */}
+           
+            <div className={`flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 transition-all duration-1200 delay-600 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+              <a 
+                href="/assests/Catalogue INVISION corpo v2 (1).pdf" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group relative px-8 sm:px-10 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-bold text-base sm:text-lg rounded-full overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50 w-full sm:w-auto"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span className="relative flex items-center justify-center" style={{ fontFamily: '"Inter", sans-serif' }}>
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            VIEW CATALOG
+                </span>
+              </a>
+              
+              <button 
+                onClick={() => {
+            document.getElementById('contact').scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start'
+            });
+                }} 
+                className="group px-8 sm:px-10 py-3 sm:py-4 border-2 border-white/40 text-white font-bold text-base sm:text-lg rounded-full hover:border-blue-400 hover:bg-blue-500/10 transform hover:scale-105 transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
+              >
+                <span className="flex items-center justify-center" style={{ fontFamily: '"Inter", sans-serif' }}>
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            GET QUOTE
+                </span>
+              </button>
+            </div>
+
+            {/* Enhanced Stats with mobile responsive grid */}
         <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto transition-all duration-1200 delay-800 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>

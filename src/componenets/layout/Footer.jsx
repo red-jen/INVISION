@@ -57,11 +57,11 @@ const Footer = () => {
             <div className="lg:col-span-2">
               <div className="flex items-center space-x-3 mb-6">
                 {/* Logo */}
-                <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg border-2 border-blue-500/30">
+                <div className="w-16 h-12 rounded-xl overflow-hidden shadow-lg border-2 border-blue-500/30">
                   <img 
-                    src="/assests/WhatsApp Image 2025-03-21 at 13.28.02.png"
+                    src="./logo.png"
                     alt="INVISION Logo"
-                    className="w-full h-full object-cover"
+                    className="w-60 h-full cover"
                     onError={(e) => {
                       e.target.style.display = 'none';
                       e.target.nextSibling.style.display = 'flex';
