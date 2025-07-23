@@ -27,29 +27,30 @@ const Products = () => {
       name: 'INVISION OPS Integrated Mini PC',
       modelCode: 'DS-2022',
       image: '/assests/ops.png',
-      description: 'Professional integrated mini PC for tactile screen applications, delivered with Microsoft Office 2019 Standard with activation key and Windows license.',
-      features: ['Touch Enabled', '4K Resolution', 'Multi-User Support'],
+      description: 'Professional integrated mini PC for interactive displays, featuring Windows 10 Pro and Microsoft Office 2019 Standard with full activation keys.',
+      features: ['Windows 10 Pro', 'Intel Core i7', '16GB RAM'],
       layoutStyle: 'hero',
       inStock: true,
-      isNew: false,
-      category: 'Interactive Displays',
+      isNew: true,
+      category: 'Mini PC',
       generalFunctionality: [
-        'Windows 10 Pro operating system installed and activated',
-        'Microsoft Office 2019 Standard with activation key'
+        'Windows 10 Pro operating system pre-installed and activated',
+        'Microsoft Office 2019 Standard with activation key included',
+        'High-performance computing for all business applications'
       ],
       specifications: {
         'GENERAL CHARACTERISTICS': [
           { label: 'Processor', value: 'Intel Core i7-11G (2.0 GHz Turbo Boost 4.5 GHz)' },
           { label: 'Memory', value: 'DDR4 with 16GB' },
-          { label: 'Interface', value: 'SSD M.2 2280 NVMe PCIe Gen3' },
-          { label: 'Storage', value: 'SSD with 256 GB' },
-          { label: 'Graphics Card', value: 'Intel® UHD Graphics 630 Intel H510 integrated chipset' },
-          { label: 'Wireless', value: 'Intel AX200 WiFi 6 + BT5.2 dual-band module' },
+          { label: 'Storage', value: '256GB SSD M.2 2280 NVMe PCIe Gen3' },
+          { label: 'Graphics', value: 'Intel® UHD Graphics 630 with Intel H510 chipset' },
+          { label: 'Wireless', value: 'Intel AX200 WiFi 6 + Bluetooth 5.2 dual-band module' },
           { label: 'Network', value: 'Gigabit LAN Ethernet' }
         ]
       },
       inputs: [
-        'MIC (microphone) x 1'
+        'MIC (microphone) x 1',
+        'USB 3.0 x 4'
       ],
       outputs: [
         'DisplayPort x 1 (3840x2160@60Hz)',
@@ -57,86 +58,85 @@ const Products = () => {
         'Audio x 1 line output'
       ],
       softwareIncluded: [
-        'Adobe Reader/Annotation software with license'
+        'Windows 10 Pro',
+        'Microsoft Office 2019 Standard',
+        'Annotation software with license'
       ]
     },
     {
       id: 2,
-      name: 'INVISION White Sliding Whiteboard',
-      modelCode: 'IS-4SB',
+      name: 'INVISION Interactive Display Support',
+      modelCode: 'IS-4SM',
       image: '/assests/whiteboard.jpg',
-      description: 'Professional sliding whiteboard with 4 sliding doors, 02 sliding doors for projection protection',
-      features: ['Sliding Doors', 'Projection Protection', 'Aluminum Frame'],
+      description: 'Mobile support stand for interactive displays with electric height adjustment and anti-collision protection system.',
+      features: ['Electric Height Adjustment', 'Anti-collision System', 'Mobile with Braking System'],
       layoutStyle: 'wide',
       inStock: true,
-      isNew: false,
-      category: 'Interactive Whiteboards',
+      isNew: true,
+      category: 'Display Support',
       generalFunctionality: [
-        'White board with 4 sliding doors for projection protection',
-        'Aluminum frame with plastic corners and integrated lateral sealing system',
-        'Sliding doors at front and fixed panels at back'
+        'Electric height adjustment for interactive displays',
+        'Anti-collision protection system for safe operation',
+        'Mobile design with secure braking system',
+        'Compatible with displays from 55" to 86"'
       ],
       specifications: {
-        'BOARD SPECIFICATIONS': [
-          { label: 'Dimensions', value: '4200 x 1300 x 190 mm' },
-          { label: 'Frame Material', value: 'Aluminum with plastic corners' },
-          { label: 'Sealing System', value: 'Integrated lateral sealing with aluminum side joints' },
-          { label: 'Profile', value: 'Aluminum silver profile 90mm x 50mm with 30mm x 20mm inner frame' },
-          { label: 'Wall Thickness', value: '1.2 mm profile wall thickness' }
+        'SUPPORT SPECIFICATIONS': [
+          { label: 'Compatibility', value: 'For displays from 55" to 86"' },
+          { label: 'VESA Standard', value: 'From 200x200mm to 800x600mm' },
+          { label: 'Height Adjustment', value: 'Electric, 650mm vertical travel' },
+          { label: 'Load Capacity', value: 'Up to 150kg' },
+          { label: 'Material', value: 'Steel construction with powder coating' }
         ],
-        'SLIDING DOORS': [
-          { label: 'Door Dimensions', value: '1015 x 1215 mm each' },
-          { label: 'Frame Construction', value: '15mm frame with 02 galvanized steel sheets 0.16mm' },
-          { label: 'Interior Foam', value: 'Polystyrene foam interior' },
-          { label: 'Writing Surface', value: 'White ceramic writing surface ±0.2mm' },
-          { label: 'Surface Resistance', value: '900° corrosion and scratch resistant' },
-          { label: 'Paint Durability', value: '9H hardness paint + 0.025 paint layer' }
+        'ELECTRICAL FEATURES': [
+          { label: 'Power', value: 'AC 100-240V, 50/60Hz' },
+          { label: 'Control', value: 'Remote control for height adjustment' },
+          { label: 'Safety Features', value: 'Anti-collision protection system' },
+          { label: 'Cable Management', value: 'Integrated cable management system' }
         ],
-        'SLIDING MECHANISM': [
-          { label: 'Rail System', value: 'Double group suspension rail with quality bearings' },
-          { label: 'Lower Rail', value: 'Horizontal double group rail for smooth sliding' },
-          { label: 'Positioning', value: 'Precise front/back positioning with secure locking' },
-          { label: 'Sliding Tolerance', value: 'Less than 0.5mm front/back tolerance' },
-          { label: 'Groups', value: '8 groups installed uniformly top to bottom' }
+        'MOBILITY': [
+          { label: 'Wheels', value: '4 heavy-duty castors with brakes' },
+          { label: 'Braking System', value: 'Individual wheel locks for stability' },
+          { label: 'Mobility', value: 'Easy to move with ergonomic handles' }
         ]
       },
       inputs: [],
       outputs: [],
       softwareIncluded: [],
       additionalFeatures: [
-        'Rails with 2 mobile equipment and 4 end-of-travel stops',
-        'Key locking for 2 sliding panels',
-        'Electrostatic protection film must be applied to surface during transport'
+        'Anti-collision protection system',
+        'Cable management system for tidy installation',
+        'Secure braking system for stability',
+        'Compatible with all standard VESA mounts'
       ]
     },
     {
       id: 3,
-      name: 'LED Video Wall Display',
-      modelCode: 'MUR-P1.9',
-      image: 'https://static.truesoundhire.co.uk/wp-content/uploads/3.9-mm-led-video-wall-hire-2.jpg',
-      description: 'Professional LED video wall with exceptional image quality and advanced technology for outstanding display performance',
-      features: ['P1.9 Pixel Pitch', 'High Brightness', 'Easy Maintenance'],
+      name: 'INVISION Interactive Display',
+      modelCode: 'IID-75',
+      image: '/assests/led.png',
+      description: 'Professional 75" 4K Ultra HD interactive touch display with integrated Android system and OPS slot for Windows PC.',
+      features: ['75" 4K UHD Display', '20-Point Touch', 'Android & Windows Compatible'],
       layoutStyle: 'tall',
       inStock: true,
       isNew: true,
-      category: 'LED Video Walls',
+      category: 'Interactive Displays',
       generalFunctionality: [
-        'Exceptional image quality with advanced LED technology',
-        'High luminosity for all ambient lighting conditions',
-        'Easy maintenance with front access LED modules',
-        'Integrated project management from design to maintenance'
+        '75" 4K Ultra HD display with anti-glare glass',
+        '20-point multi-touch infrared technology',
+        'Integrated Android 9.0 system',
+        'OPS slot for Windows PC integration'
       ],
       specifications: {
         'DISPLAY CHARACTERISTICS': [
-          { label: 'Pixel Pitch', value: 'P1.9 | P2.5 | P3.1 | P3.8' },
-          { label: 'Technology', value: 'SMD LED with exceptional image quality' },
-          { label: 'Brightness', value: 'High luminosity 800 cd/m²' },
-          { label: 'Contrast Ratio', value: '5000:1' },
-          { label: 'Viewing Angles', value: 'H:178° V:178°' },
-          { label: 'Refresh Rate', value: '3840Hz' }
+          { label: 'Screen Size', value: '75 inches diagonal' },
+          { label: 'Resolution', value: '4K Ultra HD (3840×2160)' },
+          { label: 'Display Technology', value: 'LED backlit LCD with anti-glare glass' },
+          { label: 'Brightness', value: '400 cd/m²' },
+          { label: 'Contrast Ratio', value: '4000:1' },
+          { label: 'Viewing Angles', value: '178° horizontal and vertical' }
         ],
-        'TECHNICAL FEATURES': [
-          { label: 'Color Processing', value: '16-bit color processing' },
+        'TOUCH SYSTEM': [
           { label: 'Color Gamut', value: 'Wide color gamut coverage' },
           { label: 'Uniformity', value: 'High color and brightness uniformity' },
           { label: 'Lifespan', value: '100,000+ hours' },
@@ -166,14 +166,212 @@ const Products = () => {
         'Remote monitoring system'
       ]
     },
-    {
+     {
       id: 4,
+      name: 'INVISION Indoor Digital Totem',
+      modelCode: 'IDT-55',
+      image: '/assests/outdoor.png',
+      description: 'Professional indoor digital totem display with 55-inch full HD screen and interactive touch capabilities',
+      features: ['55" Touch Display', 'Android System', 'Interactive Content'],
+      layoutStyle: 'medium',
+      inStock: true,
+      isNew: true,
+      category: 'Digital Signage',
+      generalFunctionality: [
+        '10-point infrared touch technology',
+        'Vertical or horizontal orientation options',
+        'Commercial-grade 24/7 operation',
+        'Integrated content management system'
+      ],
+      specifications: {
+        'DISPLAY SPECIFICATIONS': [
+          { label: 'Screen Size', value: '55 inches' },
+          { label: 'Display Type', value: 'Commercial-grade LCD with LED backlight' },
+          { label: 'Resolution', value: 'Full HD 1080p (1920×1080)' },
+          { label: 'Orientation', value: 'Vertical (portrait) or Horizontal (landscape)' },
+          { label: 'Brightness', value: '500 cd/m²' },
+          { label: 'Contrast Ratio', value: '4000:1' },
+          { label: 'Viewing Angle', value: '178°/178°' }
+        ],
+        'TOUCH TECHNOLOGY': [
+          { label: 'Touch System', value: '10-point infrared touch' },
+          { label: 'Touch Resolution', value: '32767×32767' },
+          { label: 'Response Time', value: '<8ms' },
+          { label: 'Touch Accuracy', value: '<2mm' },
+          { label: 'Touch Interface', value: 'USB' }
+        ],
+        'SYSTEM SPECIFICATIONS': [
+          { label: 'Processor', value: 'Quad-core ARM Cortex A17, 1.6GHz' },
+          { label: 'GPU', value: 'Mali-T760 MP4' },
+          { label: 'RAM', value: '2GB DDR3' },
+          { label: 'Storage', value: '16GB eMMC' },
+          { label: 'Operating System', value: 'Android 7.1' },
+          { label: 'Networking', value: 'Wi-Fi 802.11b/g/n, Ethernet RJ45' }
+        ],
+        'PHYSICAL SPECIFICATIONS': [
+          { label: 'Dimensions', value: '1950mm × 800mm × 60mm' },
+          { label: 'Weight', value: '85kg' },
+          { label: 'Casing Material', value: 'Powder-coated steel with tempered glass front' },
+          { label: 'Power Supply', value: 'AC 100-240V, 50/60Hz' },
+          { label: 'Power Consumption', value: '180W (typical), <0.5W (standby)' }
+        ]
+      },
+      inputs: [
+        'HDMI input',
+        'USB 2.0 x 2',
+        'Ethernet RJ45',
+        'Wi-Fi connection',
+        'SD card slot'
+      ],
+      outputs: [
+        'Audio output 3.5mm',
+        'Built-in stereo speakers 2×10W'
+      ],
+      softwareIncluded: [
+        'Content management system',
+        'Remote device management',
+        'Digital signage scheduling software',
+        'Interactive application support'
+      ],
+      additionalFeatures: [
+        'Built-in cooling system',
+        'Front access for maintenance',
+        'Security lock',
+        'Auto on/off scheduling',
+        'Multi-zone content layout'
+      ]
+    },
+   
+    {
+      id: 7,
+      name: 'INVISION PTZ Security Camera',
+      modelCode: 'PTZ-7',
+      image: '/assests/CAMERA PTZ 7',
+      description: 'High-definition PTZ security camera with 4MP resolution and 25x optical zoom for professional surveillance',
+      features: ['4MP Resolution', '25x Optical Zoom', '360° Rotation'],
+      layoutStyle: 'small',
+      inStock: true,
+      isNew: true,
+      category: 'Security Systems',
+      generalFunctionality: [
+        'Pan-Tilt-Zoom functionality with precision control',
+        'IR night vision with up to 100m visibility',
+        'Smart tracking and auto-focus capabilities',
+        'Weather-resistant design for indoor and outdoor use'
+      ],
+      specifications: {
+        'CAMERA SPECIFICATIONS': [
+          { label: 'Image Sensor', value: '1/3" 4MP Progressive Scan CMOS' },
+          { label: 'Resolution', value: '4MP (2560×1440)' },
+          { label: 'Zoom', value: '25x optical zoom' },
+          { label: 'Focal Length', value: '4.8mm-120mm' },
+          { label: 'Angle of View', value: '59.8°-2.4° (Wide-Tele)' },
+          { label: 'Min. Illumination', value: 'Color: 0.05 Lux, B/W: 0.01 Lux, 0 Lux with IR' }
+        ],
+        'PTZ FEATURES': [
+          { label: 'Pan Range', value: '360° endless rotation' },
+          { label: 'Pan Speed', value: '0.1°-200°/s' },
+          { label: 'Tilt Range', value: '-15° to 90° (auto flip)' },
+          { label: 'Tilt Speed', value: '0.1°-120°/s' },
+          { label: 'Presets', value: '300 preset positions' },
+          { label: 'Patrol', value: '8 patrols, up to 32 presets per patrol' }
+        ],
+        'VIDEO & NETWORK': [
+          { label: 'Video Compression', value: 'H.265+/H.265/H.264+/H.264' },
+          { label: 'Frame Rate', value: '25fps@4MP, 50/60fps@1080p' },
+          { label: 'Stream Type', value: 'Main stream, Sub stream, Third stream' },
+          { label: 'Network Interface', value: 'RJ45 10M/100M Ethernet' },
+          { label: 'Protocols', value: 'IPv4/IPv6, HTTP, HTTPS, FTP, SMTP, UPnP, SNMP, DNS, DDNS, NTP' }
+        ],
+        'PHYSICAL CHARACTERISTICS': [
+          { label: 'IR Distance', value: 'Up to 100 meters' },
+          { label: 'Protection Level', value: 'IP66 weatherproof' },
+          { label: 'Working Temperature', value: '-30°C to 65°C (-22°F to 149°F)' },
+          { label: 'Power Supply', value: 'AC24V/3A ±25%, PoE+ (802.3at)' },
+          { label: 'Power Consumption', value: 'Max 18W (24W with IR on)' }
+        ]
+      },
+      inputs: [
+        'Network input (RJ45)',
+        'Power input (AC24V)',
+        'Audio input',
+        'Alarm input x2'
+      ],
+      outputs: [
+        'Audio output',
+        'Alarm output x1',
+        'Video output (optional)'
+      ],
+      softwareIncluded: [
+        'Video management software',
+        'Mobile surveillance app',
+        'SDK for integration'
+      ],
+      additionalFeatures: [
+        'Smart IR technology',
+        'Defog function',
+        'Digital image stabilization',
+        'Privacy masking',
+        'Motion detection with smart analytics'
+      ]
+    },
+     {
+      id: 6,
+      name: 'INVISION Interactive Display Support',
+      modelCode: 'IS-4SM',
+      image: '/assests/Support mobile/3.png',
+      description: 'Premium mobile stand with electric height adjustment from 0-65cm, suitable for 55-100" displays with max 150kg capacity.',
+      features: ['Electric Height Adjustment', '150kg Capacity', 'For 55-100" Displays'],
+      layoutStyle: 'small',
+      inStock: true,
+      isNew: true,
+      category: 'Display Support',
+      generalFunctionality: [
+        'Electric height adjustment from 0-65cm',
+        'Premium design with high-quality materials',
+        'Mobile support with secure braking system',
+        'Compatible with displays from 55" to 100"'
+      ],
+      specifications: {
+        'SUPPORT SPECIFICATIONS': [
+          { label: 'Compatibility', value: 'For displays from 55" to 100"' },
+          { label: 'VESA Standard', value: 'All common VESA patterns' },
+          { label: 'Height Adjustment', value: 'Electric, 0-65cm vertical travel' },
+          { label: 'Load Capacity', value: 'Up to 150kg' },
+          { label: 'Material', value: 'Premium steel construction with quality finish' }
+        ],
+        'ELECTRICAL FEATURES': [
+          { label: 'Power', value: 'AC 100-240V, 50/60Hz' },
+          { label: 'Control', value: 'Remote control for height adjustment' },
+          { label: 'Safety Features', value: 'Anti-collision protection system' },
+          { label: 'Cable Management', value: 'Integrated cable management system' }
+        ],
+        'MOBILITY': [
+          { label: 'Wheels', value: '4 premium castors with brakes' },
+          { label: 'Braking System', value: 'Individual wheel locks for stability' },
+          { label: 'Mobility', value: 'Easy to move with ergonomic design' }
+        ]
+      },
+      inputs: [],
+      outputs: [],
+      softwareIncluded: [],
+      additionalFeatures: [
+        'Anti-collision protection system',
+        'Cable management for tidy installation',
+        'Premium build quality',
+        'Compatible with all standard VESA mounts',
+        'Electric actuator system for smooth height adjustment'
+      ]
+    },
+    
+    {
+      id: 8,
       name: 'INVISION 65" Touch Display Totem',
       modelCode: 'IS-6512',
-      image: 'https://gtoffice.co.uk/wp-content/uploads/2023/02/LCD-Video-Wall-White-Background-Image-1.jpg',
+      image: '/assests/Groupe 5.png',
       description: 'Professional 65-inch interactive touch display totem with 10-point infrared touch technology',
       features: ['65" Touch Screen', '4K Resolution', 'Android 7.1'],
-      layoutStyle: 'medium',
+      layoutStyle: 'wide-small',
       inStock: true,
       isNew: false,
       category: 'Digital Signage',
@@ -235,80 +433,14 @@ const Products = () => {
         'Characteristics: software management, content display and USB disk charging',
         'Support: black screen saver'
       ]
-    },
-    {
-      id: 5,
-      name: 'INVISION 75" 4K Touch Screen',
-      modelCode: 'IS-7516',
-      image: 'https://gtoffice.co.uk/wp-content/uploads/2023/02/LCD-Video-Wall-White-Background-Image-1.jpg',
-      description: 'Professional 75-inch 4K touch screen with integrated camera and advanced touch technology',
-      features: ['75" 4K Display', 'Integrated Camera', 'Ultra Fine Touch'],
-      layoutStyle: 'small',
-      inStock: true,
-      isNew: true,
-      category: 'Interactive Displays',
-      generalFunctionality: [
-        '4K UHD 3840x2160 resolution with exceptional clarity',
-        'Integrated camera for video conferencing',
-        'Ultra Fine Touch (UFT) technology for precise interaction',
-        '20-point multi-touch capability for collaborative work'
-      ],
-      specifications: {
-        'DISPLAY CHARACTERISTICS': [
-          { label: 'Screen Size', value: '75 inches' },
-          { label: 'Panel Type', value: 'LCD TFT module with DLED backlight' },
-          { label: 'Display Area', value: '1650.24(H) x 928.26(V) mm' },
-          { label: 'Aspect Ratio', value: '16:9' },
-          { label: 'Resolution', value: 'UHD 3840x2160 (4K)' },
-          { label: 'Colors', value: '1.078 billion colors (10-bit)' },
-          { label: 'Brightness', value: '450 nits' },
-          { label: 'Contrast Ratio', value: '1200:1' },
-          { label: 'Response Time', value: '8 ms' },
-          { label: 'Viewing Angles', value: 'H=178°, V=178°' },
-          { label: 'Backlight Lifespan', value: '50,000 hours' }
-        ],
-        'TOUCH TECHNOLOGY': [
-          { label: 'Touch Type', value: 'Ultra Fine Touch (UFT) Technology' },
-          { label: 'Touch Resolution', value: '32767 x 32767' },
-          { label: 'Touch Points', value: 'Windows: 40 points / Android: 20 points' },
-          { label: 'Surface Treatment', value: 'Durable 9H anti-fingerprint and anti-glare coating' }
-        ],
-        'SYSTEM PLATFORM': [
-          { label: 'Processor', value: 'ARM Quad-core A78 + Quad-core A65' },
-          { label: 'RAM', value: '8 GB' },
-          { label: 'Storage', value: '128 GB' },
-          { label: 'Operating System', value: 'Android' }
-        ],
-        'CONTROL BUTTONS': [
-          { label: 'Functions', value: 'Power, Menu, Volume-, Volume+, Settings, Eye Protection, Power' }
-        ]
-      },
-      inputs: [
-        'HDMI x2 (3840 x 2160 @ 60 Hz, HDCP2.2, CEC)',
-        'RVB/VGA x1 (1920 x 1080 @ 60 Hz)',
-        'Audio x1 (PC audio input)',
-        'RS232 x1',
-        'Wi-Fi module included'
-      ],
-      outputs: [
-        'DisplayPort x1 (3840x2160 @60Hz)',
-        'Audio output',
-        'OPS module slot x1'
-      ],
-      softwareIncluded: [
-        'Interactive whiteboard software',
-        'Screen sharing applications',
-        'Digital annotation tools'
-      ]
-    },
-    {
-      id: 6,
+    },{
+      id: 9,
       name: 'Outdoor Digital Totem Display',
       modelCode: 'ODT-55',
       image: 'https://gtoffice.co.uk/wp-content/uploads/2023/02/LCD-Video-Wall-White-Background-Image-1.jpg',
       description: 'Weatherproof outdoor digital totem with high brightness display for all-weather performance',
       features: ['IP65 Rated', '2500 nits Brightness', 'Tempered Glass'],
-      layoutStyle: 'small',
+      layoutStyle: 'wide-smal',
       inStock: true,
       isNew: false,
       category: 'Outdoor Displays',
@@ -357,127 +489,7 @@ const Products = () => {
         'Remote monitoring system',
         'Scheduling software'
       ]
-    },
-       {
-      id: 8,
-      name: 'Logitech Rally Camera System',
-      modelCode: 'LGT-RALLY',
-      image: 'https://gtoffice.co.uk/wp-content/uploads/2023/02/LCD-Video-Wall-White-Background-Image-1.jpg',
-      description: 'Professional 4K conference camera system with AI-powered auto-tracking and premium audio processing',
-      features: ['4K Ultra HD', 'AI Auto-Tracking', 'Premium Audio'],
-      layoutStyle: 'wide-small',
-      inStock: true,
-      isNew: true,
-      category: 'Video Conferencing',
-      generalFunctionality: [
-        'Ultra HD 4K video with exceptional clarity',
-        'AI-powered auto-tracking and framing',
-        'Premium audio with advanced noise reduction',
-        'Modular system for rooms of any size'
-      ],
-      specifications: {
-        'CAMERA SPECIFICATIONS': [
-          { label: 'Video Resolution', value: '4K Ultra HD (3840x2160) at 30fps' },
-          { label: 'Field of View', value: '90° diagonal' },
-          { label: 'Optical Zoom', value: '15x HD zoom' },
-          { label: 'Pan/Tilt', value: '±130° pan, ±90° tilt' },
-          { label: 'Auto-Focus', value: 'Yes, with face detection' },
-          { label: 'Low Light Performance', value: 'RightLight 3 technology' }
-        ],
-        'AUDIO SPECIFICATIONS': [
-          { label: 'Microphone Array', value: 'Beamforming microphone pods' },
-          { label: 'Audio Range', value: 'Up to 5.5m (18ft) pickup range' },
-          { label: 'Noise Reduction', value: 'Advanced noise and echo cancellation' },
-          { label: 'Audio Processing', value: 'Acoustic echo cancellation (AEC)' },
-          { label: 'Speakers', value: 'Premium speakers with bass reflex' }
-        ],
-        'CONNECTIVITY': [
-          { label: 'Connection Type', value: 'USB 3.0' },
-          { label: 'Cable Length', value: 'Up to 10m with Rally Camera' },
-          { label: 'Compatibility', value: 'Works with most video conferencing apps' },
-          { label: 'Mounting', value: 'Tripod mount, wall mount, ceiling mount' }
-        ],
-        'INTELLIGENT FEATURES': [
-          { label: 'Auto-Framing', value: 'RightSight computer vision technology' },
-          { label: 'Speaker Tracking', value: 'Automatic speaker detection and framing' },
-          { label: 'Presets', value: 'Up to 10 camera presets' },
-          { label: 'Remote Control', value: 'Included remote with dedicated buttons' }
-        ]
-      },
-      inputs: [
-        'USB 3.0 connection to host computer',
-        'Power input (external adapter)',
-        'Microphone pod inputs (up to 7 pods)'
-      ],
-      outputs: [
-        'Video output via USB',
-        'Audio output to speakers',
-        'Control signals to camera'
-      ],
-      softwareIncluded: [
-        'Logitech Sync device management',
-        'Camera control software',
-        'Firmware update utility',
-        'Integration with major video platforms'
-      ]
-    },
-    {
-      id: 7,
-      name: 'Hikvision Security Camera System',
-      modelCode: 'HKV-8MP',
-      image: 'https://gtoffice.co.uk/wp-content/uploads/2023/02/LCD-Video-Wall-White-Background-Image-1.jpg',
-      description: 'Professional 8MP security camera system with advanced AI analytics and night vision capabilities',
-      features: ['8MP Resolution', 'AI Analytics', 'Night Vision'],
-      layoutStyle: 'medium',
-      inStock: false,
-      isNew: false,
-      category: 'Security Systems',
-      generalFunctionality: [
-        'Advanced AI-powered video analytics',
-        'Smart motion detection and tracking',
-        '24/7 continuous monitoring capabilities',
-        'Remote access and mobile app control'
-      ],
-      specifications: {
-        'CAMERA SPECIFICATIONS': [
-          { label: 'Resolution', value: '8MP (3840×2160)' },
-          { label: 'Sensor Type', value: '1/2.5" Progressive Scan CMOS' },
-          { label: 'Min. Illumination', value: '0.01 Lux @F1.2' },
-          { label: 'IR Range', value: 'Up to 30m' },
-          { label: 'Lens', value: '2.8mm, 4mm, 6mm fixed lens' },
-          { label: 'Field of View', value: '2.8mm: 103°, 4mm: 79°, 6mm: 54°' }
-        ],
-        'VIDEO FEATURES': [
-          { label: 'Video Compression', value: 'H.265+/H.265/H.264+/H.264' },
-          { label: 'Max Framerate', value: '25fps (3840×2160)' },
-          { label: 'Video Bitrate', value: '32Kbps to 16Mbps' },
-          { label: 'Smart Features', value: 'Line crossing, intrusion detection, region entrance/exit' },
-          { label: 'Audio', value: 'Built-in microphone, external audio input/output' }
-        ],
-        'NETWORK & STORAGE': [
-          { label: 'Network Interface', value: '10M/100M Ethernet' },
-          { label: 'Protocol', value: 'TCP/IP, UDP, RTSP, HTTP, HTTPS, FTP' },
-          { label: 'Storage', value: 'NAS, micro SD card up to 256GB' },
-          { label: 'Power', value: 'PoE (802.3at, class 4)' }
-        ]
-      },
-      inputs: [
-        'Audio input (line in)',
-        'Alarm input x1',
-        'Power input (PoE)'
-      ],
-      outputs: [
-        'Audio output (line out)',
-        'Alarm output x1',
-        'Network output (RJ45)'
-      ],
-      softwareIncluded: [
-        'iVMS-4200 client software',
-        'Mobile app (Hik-Connect)',
-        'Web browser interface'
-      ]
     }
- 
   ];
 
   useEffect(() => {
