@@ -368,7 +368,7 @@ const Products = () => {
       id: 8,
       name: 'INVISION 65" Touch Display Totem',
       modelCode: 'IS-6512',
-      image: '/assests/Groupe 5.png',
+      image: '/assests/g14.png',
       description: 'Professional 65-inch interactive touch display totem with 10-point infrared touch technology',
       features: ['65" Touch Screen', '4K Resolution', 'Android 7.1'],
       layoutStyle: 'wide',
