@@ -26,7 +26,7 @@ const Products = () => {
       id: 1,
       name: 'INVISION OPS Integrated Mini PC',
       modelCode: 'DS-2022',
-      image: '/assests/ops.png',
+      image: '/assests/opps.png',
       description: 'Professional integrated mini PC for interactive displays, featuring Windows 10 Pro and Microsoft Office 2019 Standard with full activation keys.',
       features: ['Windows 10 Pro', 'Intel Core i7', '16GB RAM'],
       layoutStyle: 'hero',
@@ -67,7 +67,7 @@ const Products = () => {
       id: 2,
       name: 'INVISION Interactive Display Support',
       modelCode: 'IS-4SM',
-      image: '/assests/whiteboard.jpg',
+      image: '/assests/tt.png',
       description: 'Mobile support stand for interactive displays with electric height adjustment and anti-collision protection system.',
       features: ['Electric Height Adjustment', 'Anti-collision System', 'Mobile with Braking System'],
       layoutStyle: 'wide',
@@ -246,7 +246,7 @@ const Products = () => {
       id: 7,
       name: 'INVISION PTZ Security Camera',
       modelCode: 'PTZ-7',
-      image: '/assests/CAMERA PTZ 7',
+      image: '/assests/camera-ptz2.png',
       description: 'High-definition PTZ security camera with 4MP resolution and 25x optical zoom for professional surveillance',
       features: ['4MP Resolution', '25x Optical Zoom', '360° Rotation'],
       layoutStyle: 'small',
@@ -319,7 +319,7 @@ const Products = () => {
       id: 6,
       name: 'INVISION Interactive Display Support',
       modelCode: 'IS-4SM',
-      image: '/assests/Support mobile/3.png',
+      image: '/assests/sup.png',
       description: 'Premium mobile stand with electric height adjustment from 0-65cm, suitable for 55-100" displays with max 150kg capacity.',
       features: ['Electric Height Adjustment', '150kg Capacity', 'For 55-100" Displays'],
       layoutStyle: 'small',
@@ -371,7 +371,7 @@ const Products = () => {
       image: '/assests/Groupe 5.png',
       description: 'Professional 65-inch interactive touch display totem with 10-point infrared touch technology',
       features: ['65" Touch Screen', '4K Resolution', 'Android 7.1'],
-      layoutStyle: 'wide-small',
+      layoutStyle: 'wide',
       inStock: true,
       isNew: false,
       category: 'Digital Signage',
@@ -437,7 +437,7 @@ const Products = () => {
       id: 9,
       name: 'Outdoor Digital Totem Display',
       modelCode: 'ODT-55',
-      image: 'https://gtoffice.co.uk/wp-content/uploads/2023/02/LCD-Video-Wall-White-Background-Image-1.jpg',
+      image: '/assests/Rectangle 6 copie.png',
       description: 'Weatherproof outdoor digital totem with high brightness display for all-weather performance',
       features: ['IP65 Rated', '2500 nits Brightness', 'Tempered Glass'],
       layoutStyle: 'wide-smal',
@@ -684,30 +684,11 @@ const Products = () => {
       case 'medium':
         return 'col-span-6 md:col-span-4 lg:col-span-3 row-span-2';
       case 'small':
-        return 'col-span-6 md:col-span-4 lg:col-span-3 row-span-';
+        return 'col-span-6 md:col-span-4 lg:col-span-3 row-span-1';
       case 'wide-small':
         return 'col-span-12 md:col-span-6 lg:col-span-6 row-span-1';
       default:
         return 'col-span-6 md:col-span-4 lg:col-span-3 row-span-2';
-    }
-  };
-
-  const getImageHeight = (layoutStyle) => {
-    switch (layoutStyle) {
-      case 'hero':
-        return 'h-80';
-      case 'wide':
-        return 'h-48';
-      case 'tall':
-        return 'h-96 lg:h-140';
-      case 'medium':
-        return 'h-40';
-      case 'small':
-        return 'h-32';
-      case 'wide-small':
-        return 'h-40';
-      default:
-        return 'h-48';
     }
   };
 
@@ -738,7 +719,7 @@ const Products = () => {
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Header with Phonk Style */}
+          {/* Header with Professional Style */}
           <div ref={headerRef} className="mb-16">
             <div className="text-center">
               <div className="inline-flex items-center px-8 py-4 rounded-full mb-8 backdrop-blur-sm border-2 relative overflow-hidden group"
@@ -777,7 +758,7 @@ const Products = () => {
           {/* Product Grid */}
           <div>
             <div 
-              className="grid gap-6 auto-rows-[minmax(100px,auto)]"
+              className="grid gap-6 auto-rows-[minmax(200px,auto)]"
               style={{
                 gridTemplateColumns: 'repeat(12, 1fr)'
               }}
@@ -790,119 +771,140 @@ const Products = () => {
                   onMouseEnter={() => setHoveredProduct(product.id)}
                   onMouseLeave={() => setHoveredProduct(null)}
                 >
-                  {/* Product Card */}
-                  <div className="relative h-full bg-white rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-500"
+                  {/* Product Card with Full Image */}
+                  <div className="relative h-full rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-500"
                        style={{
-                         border: `1px solid ${hoveredProduct === product.id ? '#3fb8f6' : '#f0f0f0'}`,
                          boxShadow: hoveredProduct === product.id 
-                           ? '0 25px 50px rgba(63, 184, 246, 0.15)' 
-                           : '0 10px 30px rgba(0, 0, 0, 0.08)'
+                           ? '0 25px 50px rgba(63, 184, 246, 0.25)' 
+                           : '0 10px 30px rgba(0, 0, 0, 0.15)'
                        }}>
                     
-                    {/* Status Badges */}
-                    {/* <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
-                      {product.isNew && (
-                        <div className="px-3 py-1 text-white text-xs font-bold rounded-full shadow-lg"
-                             style={{ background: 'linear-gradient(135deg, #3fb8f6, #6c6ffb)' }}>
-                          NEW
-                        </div>
-                      )}
-                      <div className={`px-3 py-1 text-white text-xs font-bold rounded-full shadow-lg`}
-                           style={{ 
-                             background: product.inStock 
-                               ? 'linear-gradient(135deg, #3fb8f6, #6c6ffb)' 
-                               : 'linear-gradient(135deg, #848484, #6e6e6e)'
-                           }}>
-                        {product.inStock ? 'IN STOCK' : 'COMING SOON'}
-                      </div>
-                    </div> */}
-
-                    {/* Category Badge */}
-                    <div className="absolute top-4 right-4 z-20">
-                      <div className="px-3 py-1 text-xs font-semibold rounded-full backdrop-blur-md"
-                           style={{ 
-                             backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                             color: '#4f4f4f',
-                             border: '1px solid rgba(255, 255, 255, 0.2)'
-                           }}>
-                        {product.category}
-                      </div>
-                    </div>
-
-                    /* Product Image */
-                    <div className={`relative overflow-hidden ${getImageHeight(product.layoutStyle)}`}
-                      style={{ backgroundColor: '#f8f9fa' }}>
+                    {/* Full Image Background */}
+                    <div className="absolute inset-0">
                       <img 
                         src={product.image} 
                         alt={product.name}
                         className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
                         onError={(e) => {
-                       e.target.src = 'https://via.placeholder.com/600x400/f8f9fa/3fb8f6?text=Display+Solution';
+                          e.target.src = 'https://via.placeholder.com/600x400/1e293b/3fb8f6?text=Display+Solution';
                         }}
                       />
                       
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        style={{ background: 'linear-gradient(to top, rgba(4, 4, 4, 0.3), transparent)' }}></div>
+                      {/* Gradient Overlays */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-60"/>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
+                    </div>
+
+                    {/* Static Category Badge (Always Visible) */}
+                    <div className="absolute top-4 right-4 z-30">
+                      <div className="px-3 py-1 text-xs font-semibold rounded-full backdrop-blur-md"
+                           style={{ 
+                             backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                             color: '#334155',
+                             border: '1px solid rgba(255, 255, 255, 0.3)',
+                             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+                           }}>
+                        {product.category}
+                      </div>
+                    </div>
+
+                    {/* Ultra-Subtle Status Badges - Barely Noticeable */}
+                    <div className="absolute top-3 left-3 z-30 flex flex-col gap-1">
+                      {product.isNew && (
+                        <div className="group/badge relative">
+                          <div 
+                            className="px-1.5 py-0.5 text-xs font-light rounded transition-all duration-300"
+                             style={{ 
+                               background: 'rgba(59, 130, 246, 0.08)',
+                               border: '1px solid rgba(59, 130, 246, 0.15)',
+                               color: 'rgba(255, 255, 255, 0.7)',
+                               backdropFilter: 'blur(8px)',
+                               fontSize: '10px'
+                             }}>
+                            <span className="opacity-80">NEW</span>
+                          </div>
+                        </div>
+                      )}
                       
-                      <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                        <div className="w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md"
-                          style={{ backgroundColor: 'rgba(63, 184, 246, 0.2)', border: '1px solid rgba(255, 255, 255, 0.3)' }}>
-                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                       </svg>
+                      <div className="group/badge relative">
+                        <div 
+                          className="px-1.5 py-0.5 text-xs font-light rounded transition-all duration-300"
+                           style={{ 
+                             background: product.inStock 
+                               ? 'rgba(34, 197, 94, 0.08)' 
+                               : 'rgba(156, 163, 175, 0.08)',
+                             border: product.inStock 
+                               ? '1px solid rgba(34, 197, 94, 0.15)' 
+                               : '1px solid rgba(156, 163, 175, 0.15)',
+                             color: 'rgba(255, 255, 255, 0.7)',
+                             backdropFilter: 'blur(8px)',
+                             fontSize: '10px'
+                           }}>
+                          <span className="opacity-80">
+                            {product.inStock ? 'IN STOCK' : '○'}
+                          </span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Content */}
-                    <div className={`${product.layoutStyle === 'hero' ? 'p-8' : product.layoutStyle === 'small' ? 'p-4' : 'p-6'}`}>
+                    {/* Content Overlay (Appears on Hover) */}
+                    <div className="absolute inset-0 flex flex-col justify-end p-6 z-20 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                       
-                      <h3 className={`font-bold mb-3 transition-colors duration-300 ${
-                        product.layoutStyle === 'hero' ? 'text-2xl' : 
-                        product.layoutStyle === 'small' ? 'text-base' : 'text-lg'
+                      {/* Product Title */}
+                      <h3 className={`font-bold mb-3 text-white ${
+                        product.layoutStyle === 'hero' ? 'text-3xl' : 
+                        product.layoutStyle === 'small' ? 'text-lg' : 'text-xl'
                       }`}
                           style={{ 
-                            color: hoveredProduct === product.id ? '#3fb8f6' : '#040404'
+                            textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)',
+                            lineHeight: '1.2'
                           }}>
                         {product.name}
                       </h3>
                       
+                      {/* Product Description */}
                       {product.layoutStyle !== 'small' && (
-                        <p className={`mb-4 leading-relaxed ${
+                        <p className={`mb-4 leading-relaxed text-slate-200 ${
                           product.layoutStyle === 'hero' ? 'text-base' : 'text-sm'
                         }`} 
-                           style={{ color: '#6e6e6e' }}>
+                           style={{ 
+                             textShadow: '0 1px 4px rgba(0, 0, 0, 0.8)',
+                             display: '-webkit-box',
+                             WebkitLineClamp: product.layoutStyle === 'hero' ? 3 : 2,
+                             WebkitBoxOrient: 'vertical',
+                             overflow: 'hidden'
+                           }}>
                           {product.description}
                         </p>
                       )}
 
+                      {/* Features */}
                       <div className="space-y-2 mb-6">
                         {product.features.slice(0, product.layoutStyle === 'hero' ? 3 : product.layoutStyle === 'small' ? 1 : 2).map((feature, featureIndex) => (
                           <div key={featureIndex} className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full"
-                                 style={{ background: 'linear-gradient(135deg, #3fb8f6, #6c6ffb)' }}></div>
-                            <span className={`font-medium ${
+                            <div className="w-2 h-2 rounded-full bg-blue-400 shadow-lg"></div>
+                            <span className={`font-medium text-white ${
                               product.layoutStyle === 'small' ? 'text-xs' : 'text-sm'
                             }`} 
-                                  style={{ color: '#4f4f4f' }}>
+                                  style={{ textShadow: '0 1px 4px rgba(0, 0, 0, 0.8)' }}>
                               {feature}
                             </span>
                           </div>
                         ))}
                       </div>
 
+                      {/* Action Button */}
                       <button 
                         onClick={() => handleLearnMore(product)}
-                        className={`w-full font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg rounded-xl ${
+                        className={`w-full font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl rounded-xl backdrop-blur-md ${
                           product.layoutStyle === 'small' ? 'py-2 px-4 text-sm' : 'py-3 px-6 text-sm'
                         }`}
                         style={{
                           background: product.inStock 
-                            ? hoveredProduct === product.id 
-                              ? 'linear-gradient(135deg, #6c6ffb, #3fb8f6)' 
-                              : 'linear-gradient(135deg, #3fb8f6, #6c6ffb)'
-                            : 'linear-gradient(135deg, #848484, #6e6e6e)',
+                            ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(37, 99, 235, 0.9))' 
+                            : 'linear-gradient(135deg, rgba(107, 114, 128, 0.9), rgba(75, 85, 99, 0.9))',
+                          border: '1px solid rgba(255, 255, 255, 0.2)',
+                          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
                           cursor: product.inStock ? 'pointer' : 'not-allowed'
                         }}
                         disabled={!product.inStock}
@@ -911,7 +913,8 @@ const Products = () => {
                       </button>
                     </div>
 
-                    <div className="absolute bottom-0 right-0 w-16 h-16 opacity-5">
+                    {/* Subtle Corner Accent */}
+                    <div className="absolute bottom-0 right-0 w-16 h-16 opacity-20 group-hover:opacity-30 transition-opacity duration-500">
                       <div className="absolute bottom-0 right-0 w-full h-full rounded-tl-full"
                            style={{ background: 'linear-gradient(135deg, #3fb8f6, #6c6ffb)' }}></div>
                     </div>
@@ -921,7 +924,7 @@ const Products = () => {
             </div>
           </div>
 
-          {/* Bottom CTA with Phonk Style */}
+          {/* Bottom CTA with Professional Style */}
           <div ref={ctaRef} className="text-center mt-20">
             <div className="inline-flex flex-col items-center p-8 rounded-3xl backdrop-blur-sm border-2 relative overflow-hidden group"
                  style={{ 

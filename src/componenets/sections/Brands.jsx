@@ -39,7 +39,7 @@ const Brands = () => {
     {
       id: 4,
       name: 'Panasonic',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Panasonic_logo_%28Blue%29.svg',
+      logo: '/assests/p.png',
       category: 'Digital Signage',
       description: 'Innovative digital signage and display solutions',
       partnership: 'Strategic Partner',
@@ -57,7 +57,7 @@ const Brands = () => {
     {
       id: 6,
       name: 'Sharp',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Sharp_logo.svg',
+      logo: '/assests/IP.png',
       category: 'Interactive Displays',
       description: 'Touch-enabled interactive display systems',
       partnership: 'Authorized Dealer',

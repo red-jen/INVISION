@@ -228,15 +228,15 @@ const Contact = () => {
                 
                 <div>
                   <div className="text-sm font-medium text-gray-500 mb-2">Téléphone</div>
-                  <a href="tel:+33123456789" className="text-blue-600 hover:underline">
-                    +33 1 23 45 67 89
+                  <a href="tel:+212661442247" className="text-blue-600 hover:underline">
+                    +212 661 442 247
                   </a>
                 </div>
                 
                 <div>
                   <div className="text-sm font-medium text-gray-500 mb-2">Email</div>
-                  <a href="mailto:contact@invision-solutions.fr" className="text-blue-600 hover:underline">
-                    contact@invision-solutions.fr
+                  <a href="mailto:invision.electro@gmail.com" className="text-blue-600 hover:underline">
+                    invision.electro@gmail.com
                   </a>
                 </div>
                 
@@ -339,7 +339,7 @@ const Contact = () => {
                       className={`w-full px-4 py-3 rounded-lg border bg-white text-gray-900 placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                         errors.phone ? 'border-red-300' : 'border-gray-300'
                       }`}
-                      placeholder="+33 1 23 45 67 89"
+                      placeholder="+212 661 442 247"
                       style={{ color: '#1f2937' }}
                     />
                     {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
