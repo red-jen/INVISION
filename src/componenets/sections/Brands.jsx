@@ -21,7 +21,7 @@ const Brands = () => {
     {
       id: 2,
       name: 'LG',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/b/bf/LG_logo_%282015%29.svg',
+      logo: 'https://www.lg.com/etc.clientlibs/lge/clientlibs/clientlib-site/resources/images/icon/icon-loading.gif',
       category: 'Display Solutions',
       description: 'Premium OLED and LCD display technologies',
       partnership: 'Premium Partner',
